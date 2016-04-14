@@ -29,8 +29,8 @@ app.get('/list', (req, res) => {
 
 
 app.post('/charge', (req, res) => {
-	let stripeToken = req.body.stripeToken;
-
+	let stripeToken = req.body.stripeToken.id;
+	
 	let charge = stripe.charges.create({
 			amount: 2000,
 			currency: 'usd',
@@ -39,7 +39,10 @@ app.post('/charge', (req, res) => {
 		}, (err, charge) => {
 			if (err && err.type === 'StripeCardError') {
 				console.log('Card declined', err);
-			} else console.log('Charge success: ', charge);
+			} else {
+				console.log('Charge success: ', charge);
+				res.status(200).end();
+			};
 		});
 });
 
