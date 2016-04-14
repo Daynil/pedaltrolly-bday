@@ -46,6 +46,10 @@ body {
 	display: none;
 }
 
+#tooltip.remind {
+	background-color: hsla(0, 50%, 50%, 0.4);
+}
+
 #attending {
 	margin-left: 0px;
 	top: 10px;
@@ -54,6 +58,10 @@ body {
 #spots {
 	margin-left: 200px;
 	top: 10px;
+}
+
+#spots-left {
+	color: hsl(60, 90%, 50%);
 }
 
 .column {
@@ -103,11 +111,28 @@ body {
 	border: 1px solid black;
 	padding: 10px;
 	cursor: pointer;
+	transition: 0.2s;
 }
 
 #reserve:hover {
 	background-color: black;
 	color: aliceblue;
+}
+
+#reserve-seat {
+	margin-bottom: 20px;
+}
+
+#reserve-focus {
+	color: green;
+	text-decoration: underline;
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+#reserve-focus:hover {
+	color: black;
+	text-decoration: none;
 }
 
 .error {
@@ -116,4 +141,21 @@ body {
 
 .error:focus {
 	outline: none;
+}
+
+#foot {
+	font-family: 'Raleway';
+	padding-top: 10px;
+}
+
+#foot a {
+	color: green;
+	transition: 0.2s;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#foot a:hover {
+	color: black;
+	text-decoration: none;
 }

@@ -1,8 +1,10 @@
 'use strict';
 let inputField;
-let spots;
 let tooltip;
+let spots;
+let spotsLeft;
 const maxPeople = 15;
+let stripeHandler;
 window.onload = init();
 
 function init() {
@@ -11,21 +13,57 @@ function init() {
 	spots = document.getElementById('spots-left');
 	tooltip = document.getElementById('tooltip');
 	
-	if (parseInt(spots.innerHTML === 0)) tooltip.className = ''; 
+	document.getElementById('reserve-focus').onclick = focus;
+	
+	configureStripeHandler();
 	document.getElementById('reserve').onclick = reserveClick;
+	
+	getDatabaseList();
 }
 
-function addAttendee(name) {
-	let spotsLeft = parseInt(spots.innerHTML);
-	spotsLeft--;
-	spots.innerText = spotsLeft;
-	let peopleAttending = maxPeople - spotsLeft;
-	
+function focus(e) {
+	e.preventDefault();
+	inputField.focus();
+}
+
+function getDatabaseList() {
+	axios.get('/list')
+		.then(res => {
+			console.log(res);
+			spotsLeft = maxPeople - res.data.people.length;
+			spots.innerText = spotsLeft;
+			if (spotsLeft === 0) tooltip.className = '';
+			clearOldList();
+			res.data.people.forEach((item, index, arr) => {
+				addAttendee(index+1, item.person);
+			})
+		});
+}
+
+function addToDatabase(name) {
+	axios.post(`/${name}`)
+		.then(res => {
+			console.log(res);
+			getDatabaseList();
+		})
+		.catch(err => console.log(err));
+}
+
+function clearOldList() {
+	for (let i = 1; i <= 3; i++) {
+		let listContainer = document.getElementById(`col${i}`);
+		while (listContainer.firstChild) {
+			listContainer.removeChild(listContainer.firstChild);
+		}
+	}
+}
+
+function addAttendee(index, name) {	
 	let person = document.createElement('p');
-	person.innerText = `${peopleAttending}. ${name}`;
+	person.innerText = `${index}. ${name}`;
 	let container;
-	if (peopleAttending <= 5) container = document.getElementById('col1');
-	else if (peopleAttending > 5 && peopleAttending <= 10) container = document.getElementById('col2');
+	if (index <= 5) container = document.getElementById('col1');
+	else if (index > 5 && index <= 10) container = document.getElementById('col2');
 	else container = document.getElementById('col3');
 	container.appendChild(person);
 }
@@ -34,10 +72,33 @@ function reserveClick() {
 	let name = inputField.value;
 	if (name.length < 3) {
 		inputField.className = 'error';
+	} else if (spotsLeft === 0) {
+		tooltip.className = 'remind';
 	} else {
-		addAttendee(name);
-		inputField.value = '';
+		stripeHandler.open({
+			name: 'Birthday Trolley',
+			description: 'Reserve Seat',
+			amount: 2000
+		});
 	}
+}
+
+function configureStripeHandler() {
+	stripeHandler = StripeCheckout.configure({
+		key: 'pk_test_Z8enCS948sTYByyBceMPsHFJ',
+		token: token => {
+			console.log('token created successfully', token);
+			axios
+				.post('/charge', { stripeToken: token })
+				.then(res => {
+					if (res.status === 200) {
+						let name = inputField.value;
+						addToDatabase(name);
+						inputField.value = '';
+					}
+				});				
+		}
+	});
 }
 
 function typing(e) {

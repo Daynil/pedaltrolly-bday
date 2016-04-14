@@ -2,13 +2,14 @@
 <html lang="en" style="margin: 0; padding: 0;">
 	<head>
 		
-		<title>Birthday Pedal Trolly</title>
+		<title>Birthday Pedal Trolley</title>
 		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<!-- Load Resources -->
 		<link type="text/css" rel="stylesheet" href="styles.css"/>
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-		
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.1/axios.js"></script>
+		<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
 		
 	</head>
 	<body style="margin: 0; padding: 0;">
@@ -19,15 +20,15 @@
 			<p>Join us for the most awesome Pedal Trolley Birthday ever. Sign up and pay for your seat! $20 per seat!</p>
 			<p><b>When:</b> Friday, May 13th at 6pm</p>
 			<p><b>Where:</b> Pensacola Bay Brewery</p>
-			<p><b>Want to ride the Trolley?</b> Reserve your seat below!</p>
+			<p><b>Want to ride the Trolley?</b> Reserve your seat <a id="reserve-focus" href="#foot">below</a>!</p>
 			<p><b>No Trolley?</b> Join us at the Brewery for cake at 8:30pm after the Trolley!</p>
 		</div>
 		
 		<div id="tooltip" class="hidden">Sorry, we all full up! Join us at the Brewery for cake at 8:30pm after the Trolley!</div>
 		<div id="attendees">
 			<div id="info">
-				<p id="attending">Currently attending:</p>
-				<p id="spots">Spots remaining: <span id="spots-left">15</span></p>
+				<p id="attending"><b>Currently attending:</b></p>
+				<p id="spots"><b>Spots remaining:</b> <span id="spots-left">15</span></p>
 			</div>
 			<div id="list">
 				<div id="col1" class="column">
@@ -47,7 +48,11 @@
 			<p>Name: </p> <input type="text" id="name"></input><span id="reserve">Reserve!</span>
 		</div>
 		
+		<div id="foot">
+			<p>Created by <a href="https://github.com/Daynil/"><b>Daynil</b></a></p>
+		</div>
+		
 	</body>
 	
-	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="script-compiled.js"></script>
 </html>
