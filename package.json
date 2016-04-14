@@ -1,21 +1,19 @@
 {
-  "name": "d3tuts",
+  "name": "bday-trolley",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "css-loader": "^0.23.1",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "d3": "^3.5.16"
+    "express": "^4.13.4",
+    "mongoose": "^4.4.12",
+    "morgan": "^1.7.0",
+    "node": "0.0.0"
   }
 }

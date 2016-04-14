@@ -2,19 +2,52 @@
 <html lang="en" style="margin: 0; padding: 0;">
 	<head>
 		
-		<title>D3 Tuts</title>
+		<title>Birthday Pedal Trolly</title>
 		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<!-- Load Resources -->
 		<link type="text/css" rel="stylesheet" href="styles.css"/>
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" rel="stylesheet">
+		
 		
 	</head>
 	<body style="margin: 0; padding: 0;">
 		
-		<!-- Link to Webpack bundle -->
-		<script src="bundle.js"></script>
+		<h1 id="title">Laura's 30th Pedal Trolley Birthday!</h1>
+		<img id="trolley-pic" src="/PedalTrolley3.jpeg" alt="">
+		<div id="description">
+			<p>Join us for the most awesome Pedal Trolley Birthday ever. Sign up and pay for your seat! $20 per seat!</p>
+			<p><b>When:</b> Friday, May 13th at 6pm</p>
+			<p><b>Where:</b> Pensacola Bay Brewery</p>
+			<p><b>Want to ride the Trolley?</b> Reserve your seat below!</p>
+			<p><b>No Trolley?</b> Join us at the Brewery for cake at 8:30pm after the Trolley!</p>
+		</div>
+		
+		<div id="tooltip" class="hidden">Sorry, we all full up! Join us at the Brewery for cake at 8:30pm after the Trolley!</div>
+		<div id="attendees">
+			<div id="info">
+				<p id="attending">Currently attending:</p>
+				<p id="spots">Spots remaining: <span id="spots-left">15</span></p>
+			</div>
+			<div id="list">
+				<div id="col1" class="column">
+				
+				</div>
+				<div id="col2" class="column">
+				
+				</div>
+				<div id="col3" class="column">
+				
+				</div>
+			</div>
+		</div>
+		
+		<div id="reserve-seat">
+			<p id="seat-text"><b>Reserve your seat:</b></p>
+			<p>Name: </p> <input type="text" id="name"></input><span id="reserve">Reserve!</span>
+		</div>
 		
 	</body>
+	
+	<script type="text/javascript" src="script.js"></script>
 </html>
