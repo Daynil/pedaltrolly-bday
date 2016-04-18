@@ -4,8 +4,7 @@ body {
 }
 
 #trolley-pic {
-	width: 800px;
-	height: 500px;
+	width: 60%;
 	border-radius: 20px;
 }
 
@@ -15,6 +14,11 @@ body {
 
 #info p {
 	display: inline-block;
+}
+
+#price {
+	font-weight: bold;
+	color: green;
 }
 
 #attendees {
