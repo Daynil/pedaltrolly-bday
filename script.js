@@ -85,14 +85,13 @@ function reserveClick() {
 
 function configureStripeHandler() {
 	stripeHandler = StripeCheckout.configure({
-		key: 'pk_test_Z8enCS948sTYByyBceMPsHFJ',
+		key: 'pk_live_H7xrRnKOLn0Lyx83bKu02wQC',
 		token: token => {
-			console.log('token created successfully', token);
+			let name = inputField.value;
 			axios
-				.post('/charge', { stripeToken: token })
+				.post('/charge', { stripeToken: token, name: name })
 				.then(res => {
 					if (res.status === 200) {
-						let name = inputField.value;
 						addToDatabase(name);
 						inputField.value = '';
 					}

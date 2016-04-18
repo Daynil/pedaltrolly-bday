@@ -21,6 +21,8 @@
     "mongoose": "^4.4.12",
     "morgan": "^1.7.0",
     "node": "0.0.0",
+    "nodemailer": "^2.3.2",
+    "nodemailer-smtp-transport": "^2.4.2",
     "stripe": "^4.5.0"
   }
 }

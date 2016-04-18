@@ -148,6 +148,10 @@ body {
 	padding-top: 10px;
 }
 
+#foot p {
+	display: inline-block;
+}
+
 #foot a {
 	color: green;
 	transition: 0.2s;
@@ -158,4 +162,14 @@ body {
 #foot a:hover {
 	color: black;
 	text-decoration: none;
+}
+
+#stripe-link {
+	position: relative;
+    top: 7px;
+    left: 90px;
+}
+
+#stripe-logo {
+	cursor: pointer;
 }
