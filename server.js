@@ -13,6 +13,8 @@ const stripe = require('stripe')(process.env.STRIP_TEST_KEY);
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+console.log('mongopass??? ', encodeURIComponent(process.env.MONGO_PASS));
+
 mongoose.connect(
   process.env.MONGO_URL,
   {
