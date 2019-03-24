@@ -55,7 +55,8 @@ app.post('/charge', (req, res) => {
           from: 'Danny at Goldenbot Studios',
           to: 'omegasol11@gmail.com',
           subject: 'Card Charge Error',
-          text: `Card charge error: ${err.toString()}. Charge attempt by ${attendeeName}.`
+          text: `Card charge error: ${err.toString()}. Charge attempt by ${attendeeName}.`,
+          html: 'html'
         };
         sgMail
           .send(mailOptions)
@@ -68,7 +69,8 @@ app.post('/charge', (req, res) => {
           subject: 'Trolley Seat Reserved',
           text: `Payment received from ${attendeeName}, their email address: ${
             charge.source.name
-          }`
+          }`,
+          html: 'html'
         };
         sgMail
           .send(mailOptions)
