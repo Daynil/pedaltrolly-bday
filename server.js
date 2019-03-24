@@ -19,7 +19,7 @@ mongoose.connect(
     useNewUrlParser: true,
     auth: {
       user: process.env.MONGO_USER,
-      pass: `'${process.env.MONGO_PASS}`
+      pass: `'${process.env.MONGO_PASS}'`
     }
   },
   err => console.log('connect error', err, ' mongourl: ', process.env.MONGO_URL)
