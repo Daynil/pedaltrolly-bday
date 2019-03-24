@@ -91,7 +91,8 @@ function configureStripeHandler() {
           inputField.value = '';
         }
       }).catch(function (err) {
-        return console.log('server error: ', err);
+        console.log('server error: ', err);
+        console.log('server err body ', err.body);
       });
     }
   });
