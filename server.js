@@ -65,7 +65,7 @@ app.post('/charge', (req, res) => {
       } else {
         let mailOptions = {
           from: 'Danny at Goldenbot Studios',
-          to: 'omegasol11@gmail.com, lilescapade@gmail.com',
+          to: ['omegasol11@gmail.com', 'lilescapade@gmail.com'],
           subject: 'Trolley Seat Reserved',
           text: `Payment received from ${attendeeName}, their email address: ${
             charge.source.name
