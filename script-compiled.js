@@ -90,6 +90,8 @@ function configureStripeHandler() {
           addToDatabase(name);
           inputField.value = '';
         }
+      }).catch(function (err) {
+        return console.log('server error: ', err);
       });
     }
   });
