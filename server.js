@@ -99,8 +99,10 @@ app.post('/:name', (req, res) => {
         console.log('we are at attendees', req.params.name);
         attendees.people.push({ person: req.params.name });
         attendees.save(err => {
-          if (err) res.status(400).end('**save err: ', err);
-          else res.status(200).end('added attendee successfully');
+          if (err) {
+            console.log('save error?: ', err);
+            res.status(400).end('**save err: ', err);
+          } else res.status(200).end('added attendee successfully');
         });
       }
     });
