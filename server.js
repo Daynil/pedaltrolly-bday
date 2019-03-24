@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URL, err =>
 );
 
 let attendeesSchema = new mongoose.Schema({
-  people: [{ person: String }]
+  people: { person: [String] }
 });
 
 let Attendees = mongoose.model('Attendees', attendeesSchema);
