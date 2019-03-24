@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const cors = require('cors');
 
-const stripe = require('stripe')(process.env.STRIP_TEST_KEY);
+const stripe = require('stripe')(process.env.STRIP_KEY);
 
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);

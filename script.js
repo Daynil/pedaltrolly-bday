@@ -28,7 +28,6 @@ function focus(e) {
 
 function getDatabaseList() {
   axios.get('/list').then(res => {
-    console.log(res);
     spotsLeft = maxPeople - res.data.people.length;
     spots.innerText = spotsLeft;
     if (spotsLeft === 0) tooltip.className = '';
@@ -40,12 +39,9 @@ function getDatabaseList() {
 }
 
 function addToDatabase(name) {
-  axios
-    .post(`/${name}`)
-    .then(res => {
-      getDatabaseList();
-    })
-    .catch(err => console.log(err));
+  axios.post(`/${name}`).then(res => {
+    getDatabaseList();
+  });
 }
 
 function clearOldList() {
@@ -85,21 +81,15 @@ function reserveClick() {
 
 function configureStripeHandler() {
   stripeHandler = StripeCheckout.configure({
-    key: 'pk_test_Z8enCS948sTYByyBceMPsHFJ',
+    key: 'pk_live_H7xrRnKOLn0Lyx83bKu02wQC',
     token: token => {
       let name = inputField.value;
-      axios
-        .post('/charge', { stripeToken: token, name: name })
-        .then(res => {
-          if (res.status === 200) {
-            addToDatabase(name);
-            inputField.value = '';
-          }
-        })
-        .catch(err => {
-          console.log('server error: ', err);
-          console.log('server err body ', err.body);
-        });
+      axios.post('/charge', { stripeToken: token, name: name }).then(res => {
+        if (res.status === 200) {
+          addToDatabase(name);
+          inputField.value = '';
+        }
+      });
     }
   });
 }

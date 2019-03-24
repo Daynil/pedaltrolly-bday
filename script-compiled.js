@@ -29,7 +29,6 @@ function focus(e) {
 
 function getDatabaseList() {
   axios.get('/list').then(function (res) {
-    console.log(res);
     spotsLeft = maxPeople - res.data.people.length;
     spots.innerText = spotsLeft;
     if (spotsLeft === 0) tooltip.className = '';
@@ -43,8 +42,6 @@ function getDatabaseList() {
 function addToDatabase(name) {
   axios.post('/' + name).then(function (res) {
     getDatabaseList();
-  }).catch(function (err) {
-    return console.log(err);
   });
 }
 
@@ -90,9 +87,6 @@ function configureStripeHandler() {
           addToDatabase(name);
           inputField.value = '';
         }
-      }).catch(function (err) {
-        console.log('server error: ', err);
-        console.log('server err body ', err.body);
       });
     }
   });
