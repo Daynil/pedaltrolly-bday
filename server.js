@@ -7,19 +7,10 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIP_TEST_KEY);
-const nodemailer = require('nodemailer');
-const smtpTransport = require('nodemailer-smtp-transport');
-let transporter = nodemailer.createTransport(
-  smtpTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secureConnection: true,
-    auth: {
-      user: 'dlibinrx@gmail.com',
-      pass: process.env.EMAIL_PASS
-    }
-  })
-);
+
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 mongoose.connect(process.env.MONGO_URL, err =>
   console.log('connect error', err, ' mongourl: ', process.env.MONGO_URL)
 );
@@ -63,10 +54,10 @@ app.post('/charge', (req, res) => {
           subject: 'Card Charge Error',
           text: `Card charge error: ${err.toString()}. Charge attempt by ${attendeeName}.`
         };
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) console.log(error);
-          else console.log('Message sent: ' + info.response);
-        });
+        sgMail
+          .send(mailOptions)
+          .then(sent => console.log('message sent', sent))
+          .catch(err => console.log('message error', err));
       } else {
         let mailOptions = {
           from: 'Danny at Goldenbot Studios',
@@ -76,10 +67,10 @@ app.post('/charge', (req, res) => {
             charge.source.name
           }`
         };
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) console.log(error);
-          else console.log('Message sent: ' + info.response);
-        });
+        sgMail
+          .send(mailOptions)
+          .then(sent => console.log('message sent', sent))
+          .catch(err => console.log('message error', err));
         res.status(200).end();
       }
     }
