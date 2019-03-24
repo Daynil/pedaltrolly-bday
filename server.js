@@ -13,8 +13,16 @@ const stripe = require('stripe')(process.env.STRIP_TEST_KEY);
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-mongoose.connect(process.env.MONGO_URL, err =>
-  console.log('connect error', err, ' mongourl: ', process.env.MONGO_URL)
+mongoose.connect(
+  process.env.MONGO_URL,
+  {
+    useNewUrlParser: true,
+    auth: {
+      user: process.env.MONGO_USER,
+      pass: process.env.MONGO_PASS
+    }
+  },
+  err => console.log('connect error', err, ' mongourl: ', process.env.MONGO_URL)
 );
 
 let attendeesSchema = new mongoose.Schema({
