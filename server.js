@@ -76,7 +76,7 @@ app.post('/charge', (req, res) => {
         //   .send(mailOptions)
         //   .then(sent => console.log('message sent', sent))
         //   .catch(err => console.log('message error', err));
-        console.log('payed: ', card.source.name);
+        console.log('payed: ', charge.source.name);
         res.status(200).end();
       }
     }
