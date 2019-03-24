@@ -96,7 +96,10 @@ function configureStripeHandler() {
             inputField.value = '';
           }
         })
-        .catch(err => console.log('server error: ', err));
+        .catch(err => {
+          console.log('server error: ', err);
+          console.log('server err body ', err.body);
+        });
     }
   });
 }
