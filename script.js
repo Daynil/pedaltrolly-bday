@@ -88,12 +88,15 @@ function configureStripeHandler() {
     key: 'pk_test_Z8enCS948sTYByyBceMPsHFJ',
     token: token => {
       let name = inputField.value;
-      axios.post('/charge', { stripeToken: token, name: name }).then(res => {
-        if (res.status === 200) {
-          addToDatabase(name);
-          inputField.value = '';
-        }
-      });
+      axios
+        .post('/charge', { stripeToken: token, name: name })
+        .then(res => {
+          if (res.status === 200) {
+            addToDatabase(name);
+            inputField.value = '';
+          }
+        })
+        .catch(err => console.log('server error: ', err));
     }
   });
 }

@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cors = require('cors');
+
 const stripe = require('stripe')(process.env.STRIP_TEST_KEY);
 
 const sgMail = require('@sendgrid/mail');
@@ -21,6 +23,7 @@ let attendeesSchema = new mongoose.Schema({
 
 let Attendees = mongoose.model('Attendees', attendeesSchema);
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 let pathname = path.join(process.cwd());
