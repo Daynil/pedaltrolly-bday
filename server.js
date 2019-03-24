@@ -51,31 +51,32 @@ app.post('/charge', (req, res) => {
     (err, charge) => {
       if (err && err.type === 'StripeCardError') {
         console.log('Card declined', err);
-        let mailOptions = {
-          from: 'Danny at Goldenbot Studios',
-          to: 'omegasol11@gmail.com',
-          subject: 'Card Charge Error',
-          text: `Card charge error: ${err.toString()}. Charge attempt by ${attendeeName}.`,
-          html: 'html'
-        };
-        sgMail
-          .send(mailOptions)
-          .then(sent => console.log('message sent', sent))
-          .catch(err => console.log('message error', err));
+        // let mailOptions = {
+        //   from: 'Danny at Goldenbot Studios',
+        //   to: 'omegasol11@gmail.com',
+        //   subject: 'Card Charge Error',
+        //   text: `Card charge error: ${err.toString()}. Charge attempt by ${attendeeName}.`,
+        //   html: 'html'
+        // };
+        // sgMail
+        //   .send(mailOptions)
+        //   .then(sent => console.log('message sent', sent))
+        //   .catch(err => console.log('message error', err));
       } else {
-        let mailOptions = {
-          from: 'Danny at Goldenbot Studios',
-          to: ['omegasol11@gmail.com', 'lilescapade@gmail.com'],
-          subject: 'Trolley Seat Reserved',
-          text: `Payment received from ${attendeeName}, their email address: ${
-            charge.source.name
-          }`,
-          html: 'html'
-        };
-        sgMail
-          .send(mailOptions)
-          .then(sent => console.log('message sent', sent))
-          .catch(err => console.log('message error', err));
+        // let mailOptions = {
+        //   from: 'Danny at Goldenbot Studios',
+        //   to: ['omegasol11@gmail.com', 'lilescapade@gmail.com'],
+        //   subject: 'Trolley Seat Reserved',
+        //   text: `Payment received from ${attendeeName}, their email address: ${
+        //     charge.source.name
+        //   }`,
+        //   html: 'html'
+        // };
+        // sgMail
+        //   .send(mailOptions)
+        //   .then(sent => console.log('message sent', sent))
+        //   .catch(err => console.log('message error', err));
+        console.log('payed: ', card.source.name);
         res.status(200).end();
       }
     }
