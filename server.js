@@ -22,7 +22,10 @@ mongoose.connect(
       password: process.env.MONGO_PASS
     }
   },
-  err => console.log('connect error', err, ' mongourl: ', process.env.MONGO_URL)
+  err => {
+    if (err)
+      console.log('connect error', err, ' mongourl: ', process.env.MONGO_URL);
+  }
 );
 
 let attendeesSchema = new mongoose.Schema({

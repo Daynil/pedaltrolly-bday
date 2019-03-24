@@ -79,7 +79,7 @@ function reserveClick() {
 
 function configureStripeHandler() {
   stripeHandler = StripeCheckout.configure({
-    key: 'pk_test_Z8enCS948sTYByyBceMPsHFJ',
+    key: 'pk_live_H7xrRnKOLn0Lyx83bKu02wQC',
     token: function token(_token) {
       var name = inputField.value;
       axios.post('/charge', { stripeToken: _token, name: name }).then(function (res) {
