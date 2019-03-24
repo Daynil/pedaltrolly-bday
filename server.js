@@ -106,30 +106,11 @@ app.post('/:name', (req, res) => {
     .exec()
     .then(done => {
       console.log('saved ', done);
+      res.status(200).end('added attendee successfully');
     })
     .catch(err => {
       console.log('** save error: ', err);
     });
-
-  //   attendees => {
-  //   if (attendees === null) {
-  //     let newAttendees = new Attendees({
-  //       people: [{ person: req.params.name }]
-  //     });
-  //     newAttendees.save(err => {
-  //       if (err) console.log(err);
-  //     });
-  //   } else {
-  //     console.log('we are at attendees', req.params.name);
-  //     attendees.people.push({ person: req.params.name });
-  //     attendees.save(err => {
-  //       if (err) {
-  //         console.log('save error?: ', err);
-  //         res.status(400).end('**save err: ', err);
-  //       } else res.status(200).end('added attendee successfully');
-  //     });
-  //   }
-  // });
 });
 let port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
